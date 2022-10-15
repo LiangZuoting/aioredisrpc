@@ -1,6 +1,6 @@
 from enum import Enum
 
-REDIS_PREFIX = 'aioredisrpc:'
+REDIS_PREFIX = 'asyncredisrpc:'
 
 
 class Error(Enum):

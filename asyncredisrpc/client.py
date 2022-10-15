@@ -3,7 +3,7 @@ import uuid
 
 import redis.asyncio as redis
 
-from src import REDIS_PREFIX
+from asyncredisrpc import REDIS_PREFIX
 
 
 class AsyncClient:

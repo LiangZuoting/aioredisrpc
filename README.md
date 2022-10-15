@@ -1,7 +1,13 @@
-# aioredisrpc
+# asyncredisrpc
 A naive async rpc framework based on redis, written in Python.
 
-This repo inspired by https://github.com/gowhari/pyredisrpc.
+asyncredisrpc is inspired by https://github.com/gowhari/pyredisrpc.
+
+# Installation
+
+```shell
+pip install asyncredisrpc
+```
 
 # Usage
 
@@ -9,7 +15,7 @@ This repo inspired by https://github.com/gowhari/pyredisrpc.
 
 ```python
 import asyncio
-from src.server import AsyncServer
+from asyncredisrpc.server import AsyncServer
 
 queue_name = 'test_queue'
 server = AsyncServer(queue_name, '172.21.16.114')
@@ -30,7 +36,7 @@ if __name__ == '__main__':
 
 ```python
 import asyncio
-from src.client import AsyncClient
+from asyncredisrpc.client import AsyncClient
 
 
 async def main():
