@@ -4,7 +4,7 @@ import logging
 
 import redis.asyncio as redis
 
-from src import REDIS_PREFIX, Error
+from asyncredisrpc import REDIS_PREFIX, Error
 
 
 class AsyncServer:

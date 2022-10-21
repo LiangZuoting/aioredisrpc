@@ -1,5 +1,5 @@
 import asyncio
-from src.server import AsyncServer
+from asyncredisrpc.server import AsyncServer
 
 queue_name = 'test_queue'
 server = AsyncServer(queue_name, '172.21.16.114')

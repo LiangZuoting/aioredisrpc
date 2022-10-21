@@ -1,5 +1,5 @@
 import asyncio
-from src.client import AsyncClient
+from asyncredisrpc.client import AsyncClient
 
 
 async def main():
