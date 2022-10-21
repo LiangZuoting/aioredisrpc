@@ -1,3 +1,4 @@
+import asyncio
 import json
 import logging
 
@@ -13,7 +14,10 @@ class AsyncServer:
         self.queue = REDIS_PREFIX + queue
         self.tasks = {}
 
-    async def run(self):
+    def run(self):
+        asyncio.run(self.async_run())
+
+    async def async_run(self):
         self.redis = await redis.from_url(self.url)
         while True:
             _, elem = await self.redis.blpop(self.queue)
@@ -25,8 +29,8 @@ class AsyncServer:
                 await self.response(req_id, Error.UNKNOWN_REMOTE_CALL.value, None)
                 continue
             func = self.tasks[name]
-            args = req['args'][0]
-            kwargs = req['args'][1]
+            args = req['args']
+            kwargs = req['kwargs']
             result = await func(*args, **kwargs)
             await self.response(req_id, Error.OK.value, result)
 

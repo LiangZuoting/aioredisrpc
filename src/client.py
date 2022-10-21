@@ -1,9 +1,15 @@
+import asyncio
 import json
 import uuid
 
 import redis.asyncio as redis
 
 from src import REDIS_PREFIX
+
+
+def make_request(name, *args, **kwargs):
+    req_id = uuid.uuid4().hex
+    return req_id, {'id': req_id, 'name': name, 'args': args, 'kwargs': kwargs}
 
 
 class AsyncClient:
@@ -16,8 +22,7 @@ class AsyncClient:
         self.redis = await redis.from_url(self.url)
 
     async def call(self, name, *args, **kwargs):
-        req_id = uuid.uuid4().hex
-        req = {'id': req_id, 'name': name, 'args': [args, kwargs]}
+        req_id, req = make_request(name, *args, **kwargs)
         await self.redis.rpush(self.queue, json.dumps(req))
         _, elem = await self.redis.blpop(f'{self.queue}:{req_id}')
         elem = elem.decode()
