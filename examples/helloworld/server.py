@@ -1,4 +1,4 @@
-from src.server import AsyncServer
+from asyncredisrpc.server import AsyncServer
 
 server = AsyncServer('test_queue', '172.21.16.114')
 

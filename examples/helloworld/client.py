@@ -1,6 +1,6 @@
 import asyncio
 
-from src.client import AsyncClient
+from asyncredisrpc.client import AsyncClient
 
 client = AsyncClient('test_queue', '172.21.16.114')
 
