@@ -2,7 +2,7 @@ import asyncio
 
 from asyncredisrpc.client import AsyncClient
 
-client = AsyncClient('test_queue', '172.21.16.114')
+client = AsyncClient('test_queue', '172.21.17.124')
 
 
 async def main():

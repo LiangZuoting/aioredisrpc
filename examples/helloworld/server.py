@@ -1,6 +1,11 @@
 from asyncredisrpc.server import AsyncServer
 
-server = AsyncServer('test_queue', '172.21.16.114')
+server = AsyncServer('test_queue', '172.21.17.124')
+
+
+@server.on_server_start
+async def on_server_start():
+    print('server start')
 
 
 @server.task

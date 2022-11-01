@@ -18,6 +18,8 @@ class AsyncServer:
         asyncio.run(self.async_run())
 
     async def async_run(self):
+        if 'on_server_start' in self.tasks:
+            await self.tasks['on_server_start']()
         self.redis = await redis.from_url(self.url)
         while True:
             _, elem = await self.redis.blpop(self.queue)
@@ -40,3 +42,6 @@ class AsyncServer:
 
     def task(self, func):
         self.tasks[func.__name__] = func
+
+    def on_server_start(self, func):
+        self.tasks['on_server_start'] = func
